@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Clubhouse</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if flash[:notice] %>
+      <p class="notice has-background-primary">
+        <%= notice %>
+      </p>
+    <% end %>
+    <% if flash[:alert] %>
+      <p class="alert has-background-danger">
+        <%= alert %>
+      </p>
+    <% end %>
+        <nav class="navbar is-dark">
+          <div class="navbar-end">
+            <div class="navbar-item">
+              <div class="field is-grouped">
+                <% if author_signed_in? %>
+                  <p class="control">
+                    <%= link_to 'New Post', new_post_path, class: "button" %>
+                  </p>
+                  <p class="control">
+                    <%= link_to 'Logout', destroy_author_session_path, :method => :delete, class: "button" %> 
+                  </p>
+                <% else %>
+                  <p class="control">
+                    <%= link_to 'Sign In', new_author_session_path, class: "button" %>
+                  </p>
+                  <p class="control">
+                    <%= link_to 'Sign Up', new_author_registration_path, class: "button" %>
+                  </p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </nav>
+     
+    <%= yield %>
+  </body>
+</html>

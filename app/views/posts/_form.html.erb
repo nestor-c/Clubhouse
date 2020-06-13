@@ -1,28 +1,36 @@
-<%= form_with(model: post, local: true) do |form| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<div class="section">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-4"> 
+        <%= form_with(model: post, local: true) do |form| %>
+          <% if post.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
 
-      <ul>
-        <% post.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+              <ul>
+                <% post.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+
+          <div class="field">
+            <%= form.label :title, class:"title is-5" %>
+            <%= form.text_area :title, class: "textarea is-small" %>
+          </div>
+
+          <div class="field">
+            <%= form.label :body, class: "title is-5" %>
+            <%= form.text_area :body, class: "textarea" %>
+          </div>
+
+          <div class="actions">
+            <%= form.submit "Post", class: "button is-$grey-lighter" %>
+          </div>
         <% end %>
-      </ul>
+      </div>
     </div>
-  <% end %>
-
-  
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_area :title %>
   </div>
-
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

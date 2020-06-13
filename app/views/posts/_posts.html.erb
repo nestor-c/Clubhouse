@@ -1,15 +1,25 @@
-<div class="columns is-centered">
-    <div class="column is-half">
-    <% @posts.each do |post| %>
-        <div class="box">
-            <div class="media">
-                <div class="media-content">
-                    <strong><%= post.title %></strong><br>
-                    <small><i>@<%= post.author.username%></i></small>
-                    <p><%= post.body %>
-                </div>
+<section class="section">
+    <section class="container">
+        <div class="columns is-centered">
+            <div class="column is-4">
+                <% @posts.each do |post| %>
+                    <% if author_signed_in? && post.author == current_author %>
+                        <div class="box has-background-primary">
+                    <%else%>
+                        <div class="box">
+                    <%end%>
+                            <div class="media">
+                                <div class="media-content">
+                                    <strong><%= post.title %></strong><br>
+                                    <%if author_signed_in? %>
+                                        <small><i>@<%= post.author.username%></i></small>
+                                    <%end%>
+                                    <p><%= post.body %>
+                                </div>
+                            </div>
+                        </div>
+                    
+                <%end%>
             </div>
         </div>
-        <%end%>
-    </div>
-</div>
+    </section>
